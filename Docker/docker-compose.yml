@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mydb:
+    image: mysql
+    container_name: streaming-ac-container
+    environment:
+      MYSQL_ROOT_PASSWORD: doc1602ker
+      MYSQL_DATABASE: streaming-database
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: upswedr
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+    dbdata:
