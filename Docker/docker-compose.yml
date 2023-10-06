@@ -6,12 +6,12 @@ services:
     container_name: streaming-ac-container
     environment:
       MYSQL_ROOT_PASSWORD: doc1602ker
-      MYSQL_DATABASE: streaming-database
+      MYSQL_DATABASE: streaming_database
       MYSQL_USER: db_user
       MYSQL_PASSWORD: upswedr
     ports:
       - "6033:3306"
     volumes:
-      - dbdata:/var/lib/mysql
+      - db_data:/var/lib/mysql
 volumes:
-    dbdata:
+    db_data:
