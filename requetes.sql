@@ -47,8 +47,7 @@ date_modif = NOW()
 WHERE id_film = 11; -- Remplacera l'id 11 "New York 1997"
 
 
--- supprimer un acteur/actrice -- à retester avec les on cascade
-DELETE FROM roles WHERE id_acteur = 3;
+-- supprimer un acteur/actrice (supprimera aussi ses rôles) (ID 3 = Kurt Russel)
 DELETE FROM acteurs WHERE id_acteur = 3; 
 
 
@@ -71,9 +70,6 @@ BEGIN
 END // 
 DELIMITER ;
 
-
 -- Pour appeler la procédure, il est possible d’exécuter la requête SQL suivante:
 CALL film_by_realisateur(4); 
-
-
-
+ 

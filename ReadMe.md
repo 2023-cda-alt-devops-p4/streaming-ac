@@ -27,5 +27,20 @@ et le **root password indiqué** dans le fichier .yml
 + exécuter les requêtes du fichier "create_tables.sql"
 + exécuter les requêtes du fichier "values.sql"
 + exécuter les requêtes du fichier "requetes.sql" comprenant une procédure stockée
-+ voir le trigger dans le fichier  "trigger.sql"
++ créer le trigger dans le fichier  "trigger.sql"
 
+Afin de tester le trigger, vous pouvez modifier l'utilisateur n°1 comme ceci : 
+```
+UPDATE streaming_database.utilisateurs
+SET 
+	email_utilisateur = 'yves.avite2@gmail.com',
+	date_modif = NOW()
+WHERE id_utilisateur = 1;
+```
+
+<br/>
+Afin de lancer la procédure stockée, vous pouvez lancer la requête en spécifiant un id realisateur comme ceci :
+
+```
+CALL film_by_realisateur(4); 
+```

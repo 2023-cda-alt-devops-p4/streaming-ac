@@ -1,16 +1,35 @@
--- trigger 
--- Garder grâce à un trigger une trace de toutes les modifications 
--- apportées à la table des utilisateurs. 
--- Ainsi, une table d'archive conservera la date de la mise à jour, 
--- l'identifiant de l'utilisateur concerné, 
--- l'ancienne valeur ainsi que la nouvelle.
-
-
-update id_user from user 
--- fr trigger sur table user 
-after update on users 
-for each row
-
-{BEFORE | AFTER} {INSERT | UPDATE| DELETE }
-ON table_name FOR EACH ROW
-trigger_body; 
+DELIMITER //
+CREATE TRIGGER new_logs_update_users
+BEFORE UPDATE ON utilisateurs
+FOR EACH ROW
+BEGIN
+    DECLARE old_nom_utilisateur VARCHAR(60);
+    DECLARE old_prenom_utilisateur VARCHAR(60);
+    DECLARE old_email_utilisateur VARCHAR(60);
+    
+    SET old_nom_utilisateur = OLD.nom_utilisateur;
+    SET old_prenom_utilisateur = OLD.prenom_utilisateur;
+    SET old_email_utilisateur = OLD.email_utilisateur;
+    
+    IF NEW.nom_utilisateur != old_nom_utilisateur THEN
+        INSERT INTO archives (ancienne_valeur, nouvelle_valeur)
+        VALUES (old_nom_utilisateur, NEW.nom_utilisateur);
+    END IF;
+    
+    IF NEW.prenom_utilisateur != old_prenom_utilisateur THEN
+        INSERT INTO archives (ancienne_valeur, nouvelle_valeur)
+        VALUES (old_prenom_utilisateur, NEW.prenom_utilisateur);
+    END IF;
+    
+    IF NEW.email_utilisateur != old_email_utilisateur THEN
+        INSERT INTO archives (ancienne_valeur, nouvelle_valeur)
+        VALUES (old_email_utilisateur, NEW.email_utilisateur);
+    END IF;
+    
+    INSERT INTO logs_modifications (id_utilisateur, id_archive)
+    VALUES (NEW.id_utilisateur, LAST_INSERT_ID());
+    
+    SET NEW.date_modif = NOW();
+END;
+//
+DELIMITER ;
