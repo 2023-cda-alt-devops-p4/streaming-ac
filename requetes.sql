@@ -70,6 +70,4 @@ BEGIN
 END // 
 DELIMITER ;
 
--- Pour appeler la procédure, il est possible d’exécuter la requête SQL suivante:
-CALL film_by_realisateur(4); 
  
