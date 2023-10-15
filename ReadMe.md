@@ -24,8 +24,8 @@ et le **root password indiqué** dans le fichier .yml
 
 
 ## Générer le contenu de la base de données : 
-+ exécuter les requêtes du fichier "Create_tables.sql"
++ exécuter les requêtes du fichier "create_tables.sql"
 + exécuter les requêtes du fichier "values.sql"
-+ exécuter les requêtes du fichier "Requetes.sql"
-
++ exécuter les requêtes du fichier "requetes.sql" comprenant une procédure stockée
++ voir le trigger dans le fichier  "trigger.sql"
 
