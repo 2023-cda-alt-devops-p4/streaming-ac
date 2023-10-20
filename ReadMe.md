@@ -19,15 +19,15 @@ docker-compose up
 ```
 
 ## Se connecter à la base de données :
-+ Ouvrir son client SQL afin d'établir une connexion, pour cela **renseigner le port 6033**
-et le **root password indiqué** dans le fichier .yml
-
++ Ouvrir son client SQL afin d'établir une connexion, pour cela **renseigner le port 6033** ainsi que le **nom de la database à utiliser par défaut : streaming_database**, l'utilisateur **root** et le **root password indiqué** dans le fichier .yml
 
 ## Générer le contenu de la base de données : 
-+ exécuter les requêtes du fichier "create_tables.sql"
++ exécuter les requêtes du fichier "create_tables.sql". Pour mieux visualiser la BDD, vous pouvez observer les modèles de conception sur les PDF, ainsi que le dictionnaire des données.
 + exécuter les requêtes du fichier "values.sql"
 + exécuter les requêtes du fichier "requetes.sql" comprenant une procédure stockée
 + créer le trigger dans le fichier  "trigger.sql"
+
+### TRIGGER
 
 Afin de tester le trigger, vous pouvez modifier l'utilisateur n°1 comme ceci : 
 ```
@@ -38,7 +38,9 @@ SET
 WHERE id_utilisateur = 1;
 ```
 
-<br/>
+
+### PROCEDURE STOCKEE
+
 Afin de lancer la procédure stockée, vous pouvez lancer la requête en spécifiant un id realisateur comme ceci :
 
 ```
